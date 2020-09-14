@@ -33,7 +33,13 @@ namespace StudentDemo.Controllers
         {
             return repo._students.GetById(id);
         }
-
+        //Put: api/students/id
+        [HttpPut("{id}")]
+        public Student PutStudent(int id, Student student)
+        {
+            //muss noch implementiert werden
+            return student;
+        }
         // Post: api/Students
         [HttpPost]
         public Student PostStudent(Student student)
@@ -48,87 +54,5 @@ namespace StudentDemo.Controllers
         {
             return (Student) repo.DeleteOne<Student>(id);
         }
-        /*
-        // GET: api/Students/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
-        {
-            /*var student = await _context._studentsDb.FindAsync(id);
-
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            return student;
-            return null;
-        }
-
-        // PUT: api/Students/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, Student student)
-        {
-            if (id != student.StudentId)
-            {
-                return BadRequest();
-            }
-
-            //_context.Entry(student).State = EntityState.Modified;
-
-            try
-            {
-                //await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Students
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent(Student student)
-        {
-            //_context._studentsDb.Add(student);
-            //await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetStudent", new { id = student.StudentId }, student);
-        }
-
-        // DELETE: api/Students/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Student>> DeleteStudent(int id)
-        {
-            /*var student = await _context._studentsDb.FindAsync(id);
-            if (student == null)
-            {
-                return NotFound();
-            }
-
-            /_context._studentsDb.Remove(student);
-            //await _context.SaveChangesAsync();
-
-            return null;
-        }
-
-        private bool StudentExists(int id)
-        {
-            //return _context._studentsDb.Any(e => e.StudentId == id);
-            return false;
-        }
-    */
     }
 }
