@@ -11,6 +11,7 @@ namespace StudentDemo
     {
         public ClassDbContext db;
         public Repository<Student,ClassDbContext> _students { get; set; }
+        public Repository<Teacher,ClassDbContext> _teacher { get; set; }
         public Repository<Classroom,ClassDbContext> _classroom { get; set; }
         
         public ClassRepository()
@@ -18,22 +19,34 @@ namespace StudentDemo
             db = new ClassDbContext();
             _students = new Repository<Student,ClassDbContext>();
             _classroom = new Repository<Classroom,ClassDbContext>();
+            _teacher = new Repository<Teacher, ClassDbContext>();
         }
 
         public IEnumerable<T> GetAll<T>() where T:new()
         {
             T tmp = new T();
-            return (tmp is Student) ? (IEnumerable<T>)_students.Get() : (tmp is Classroom) ? (IEnumerable<T>)_classroom.Get() : null;
+            if (tmp is Student)
+                return (IEnumerable<T>) _students.Get();
+            else if (tmp is Classroom)
+                return (IEnumerable<T>) _classroom.Get();
+            else if (tmp is Teacher)
+                return (IEnumerable<T>) _teacher.Get();
+
+            return null;
         }
-        public void CreateAll<T>(T input) where T : class
+        public void CreateOne<T>(T input) where T : class
         {
             if (input is Classroom)
             {
                 _classroom.Create(input as Classroom);
             }
-            if (input is Student)
+            else if (input is Student)
             {
                 _students.Create(input as Student);
+            }
+            else if (input is Teacher)
+            {
+                _teacher.Create(input as Teacher);
             }
         }
         public void UpdateOne<T>(T input) where T:class
@@ -69,7 +82,7 @@ namespace StudentDemo
             foreach(T temp in input)
             {
                 if (temp is Student)
-                    DeleteOne<Student>((temp as Student).StudentId);
+                    DeleteOne<Student>((int)(temp as Student).Id);
                 if (temp is Classroom)
                     DeleteOne<Classroom>((temp as Classroom).ClassroomId);
             }

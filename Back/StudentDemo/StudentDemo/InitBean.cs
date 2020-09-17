@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace StudentDemo
@@ -21,37 +22,50 @@ namespace StudentDemo
                 return;
             }
 
-            var a = new Student
+            List<Classroom> list = new List<Classroom>
             {
-                Name = "Hallo",
-                Age = 11
+                new Classroom
+                {
+                    ClassName = "1.Klasse",
+                    Students = new List<Student>(),
+                    Teachers = new List<Teacher>()
+                },
+                new Classroom
+                {
+                    ClassName = "2.Klasse",
+                    Students = new List<Student>(),
+                    Teachers = new List<Teacher>()
+                },
+                new Classroom
+                {
+                    ClassName = "3.Klasse",
+                    Students = new List<Student>(),
+                    Teachers = new List<Teacher>()
+                },
+                new Classroom
+                {
+                    ClassName = "4.Klasse",
+                    Students = new List<Student>(),
+                    Teachers = new List<Teacher>()
+                },
+                new Classroom
+                {
+                    ClassName = "5.Klasse",
+                    Students = new List<Student>(),
+                    Teachers = new List<Teacher>()
+                }
             };
-            db.CreateAll(a);
-
-
-
-            var classroom = new Classroom
+            foreach (Classroom c in list)
             {
-                Students = new List<Student>()
-            };
-            classroom.Students.Add(new Student
+                db.CreateOne(c);
+            }
+            db.db.UserLogins.Add(new UserLogin
             {
-                Name = "Peter",
-                Age = 10
+                UserName = "Admin",
+                Password = "Admin",
+                Role = "Super Admin"
             });
-
-            classroom.Students.Add(new Student
-            {
-                Name = "Lisa",
-                Age = 12
-            });
-            classroom.Students.Add(new Student
-            {
-                Name = "Herbert",
-                Age = 14
-            });
-            classroom.ClassName = "1a";
-            db.CreateAll(classroom);
+            db.db.SaveChanges();
         }
     }
 }

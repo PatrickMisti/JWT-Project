@@ -45,7 +45,7 @@ namespace StudentDemo.Controllers
         public Student PostStudent(Student student)
         {
             repo._students.Create(student);
-            return repo._students.GetById(student.StudentId);
+            return repo._students.GetById(student.Id);
         }
 
         // Delete: api/Students/1
