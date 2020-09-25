@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StudentDemo;
@@ -21,7 +24,7 @@ namespace StudentDemo.Controllers
         }
 
         // GET: api/Students
-        [HttpGet]
+        [HttpGet, Authorize(Roles = "Super Admin")]
         public IEnumerable<Student> Get_studentsDb()
         {
             return repo._students.Get();
@@ -29,7 +32,7 @@ namespace StudentDemo.Controllers
 
         // GET: api/Students/1
         [HttpGet("{id}")]
-        public Student GetStudentById(int id)
+        public Student GetStudentById(long id)
         {
             return repo._students.GetById(id);
         }

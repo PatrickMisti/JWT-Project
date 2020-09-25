@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
 import {UserLogin} from '../model/user.model';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-home-login',
@@ -11,7 +11,7 @@ export class HomeLoginComponent implements OnInit {
 
   username: string = null;
   password: string = null;
-  constructor(private router: Router) { }
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -19,6 +19,6 @@ export class HomeLoginComponent implements OnInit {
   loginHome(): void {
     const user = new UserLogin(this.username, this.password);
     console.log(user);
-    this.router.navigate(['overview', {ulogin: 'user.toString()'}]);
+    this.auth.loginHomeLocal();
   }
 }

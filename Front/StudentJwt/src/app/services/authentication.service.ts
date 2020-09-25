@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserLogin} from '../model/user.model';
 import {Router} from '@angular/router';
 
+export const url = 'http://localhost:53127/api';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +15,7 @@ export class AuthenticationService {
 
   login(user: UserLogin): void {
     const credentials = JSON.stringify(user);
-    this.http.post('http://localhost:53127/api/auth/login', credentials, {
+    this.http.post(url + '/auth/login', credentials, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -25,6 +27,10 @@ export class AuthenticationService {
     }, error => {
       this.invalidLogin = true;
     });
+  }
+
+  loginHomeLocal(): void {
+    this.router.navigate(['overview']);
   }
 
   logOut(): void {
