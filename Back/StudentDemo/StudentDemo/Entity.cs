@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace StudentDemo
 {
+    [Table("StudentTable",Schema = "Student")]
     public class Student:UserLogin
     {
         public string Name { get; set; }
@@ -25,7 +26,7 @@ namespace StudentDemo
             Students = students;
         }
     }
-
+    [Table("TeacherTable",Schema = "Teacher")]
     public class Teacher:UserLogin
     {
         public string Name { get; set; }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClientService} from '../../services/http-client.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,11 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
   hide = true;
-  constructor() {
-    console.log('settings');
+  formGroup: FormGroup;
+  grads = [['Schüler', 'students'], ['Lehrer', 'teacher']];
+  constructor(private https: HttpClientService) {
   }
 
   ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      username: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
+      age: new FormControl(null, [Validators.required]),
+      password: new FormControl(null, [Validators.required])
+    });
   }
 
+  async postData(grad: string): Promise<void> {
+    // todo disable button to submit
+    console.log(grad);
+    console.log(this.formGroup.value);
+    await this.https.postData(grad, this.formGroup.value);
+  }
 }

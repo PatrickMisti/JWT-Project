@@ -21,12 +21,10 @@ export class OverviewComponent implements OnInit {
   constructor(private jwtHelper: JwtHelperService, private arouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    console.log('ngoverview');
     this.uname = this.arouter.snapshot.paramMap.get('ulogin');
   }
 
   callComponent(component): void {
-    console.log(component);
     this.drawer.toggle();
     this.router.navigate(['overview/' + component]);
 

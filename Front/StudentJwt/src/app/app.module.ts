@@ -12,7 +12,7 @@ import { MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JwtModule} from '@auth0/angular-jwt';
 import {AuthGuard} from './services/AuthGuard';
 import {HttpClientService} from './services/http-client.service';
@@ -24,6 +24,7 @@ import {OverviewRoutingModule} from './overview/overview-routing';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { TeachersListComponent } from './components/teachers-list/teachers-list.component';
 import { ClassListComponent } from './components/class-list/class-list.component';
+import {A11yModule} from '@angular/cdk/a11y';
 
 export function tokenGetter(): string {
   return localStorage.getItem('jwt');
@@ -38,29 +39,31 @@ export function tokenGetter(): string {
     TeachersListComponent,
     ClassListComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        OverviewRoutingModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter,
-                allowedDomains: ['localhost:53127'],
-                disallowedRoutes: []
-            }
-        }),
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonToggleModule,
-        MatButtonModule,
-        HttpClientModule,
-        FormsModule,
-        MatSidenavModule,
-        MatDividerModule,
-        MatTabsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    OverviewRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter,
+        allowedDomains: ['localhost:53127'],
+        disallowedRoutes: []
+      }
+    }),
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonToggleModule,
+    MatButtonModule,
+    HttpClientModule,
+    FormsModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    A11yModule
+  ],
   providers: [AuthGuard, HttpClientService],
   bootstrap: [AppComponent]
 })
