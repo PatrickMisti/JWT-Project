@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using StudentDemo;
 
 namespace StudentDemo.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("EnableCORS")]
     public class StudentsController : ControllerBase
     {
         private readonly ClassRepository repo;
@@ -47,14 +36,10 @@ namespace StudentDemo.Controllers
             return student;
         }
         // Post: api/Students
-        [HttpPost]
+        [HttpPost, Authorize(Roles = "Admin")]
         public Student PostStudent(Student student)
         {
-            /*Student s = new Student
-            {
-
-            };*/
-            //repo._students.Create(student);
+            repo._students.Create(student);
             return repo._students.GetById(student.Id);
         }
 

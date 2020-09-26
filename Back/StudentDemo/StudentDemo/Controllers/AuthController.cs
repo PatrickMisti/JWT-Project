@@ -36,7 +36,7 @@ namespace StudentDemo.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role,user.Role)
+                new Claim(ClaimTypes.Role,user.Role.ToString())
             };
             var accessToken = tokenService.GenerateAccessToken(claims);
             var refreshToken = tokenService.GenerateRefreshToken();

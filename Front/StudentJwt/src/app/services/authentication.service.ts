@@ -20,8 +20,10 @@ export class AuthenticationService {
         'Content-Type': 'application/json'
       })
     }).subscribe(response => {
-      const token = ( response as any).token;
+      const token = (response as any).token;
+      const refreshToken = (response as any).refreshToken;
       localStorage.setItem('jwt', token);
+      localStorage.setItem('refreshToken', refreshToken);
       this.invalidLogin = false;
       this.router.navigate(['overview']);
     }, error => {
@@ -35,5 +37,6 @@ export class AuthenticationService {
 
   logOut(): void {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('refreshToken');
   }
 }

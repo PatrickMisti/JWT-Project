@@ -25,8 +25,6 @@ export class SettingsComponent implements OnInit {
 
   async postData(grad: string): Promise<void> {
     // todo disable button to submit
-    console.log(grad);
-    console.log(this.formGroup.value);
-    await this.https.postData(grad, this.formGroup.value);
+    await this.https.postData(grad, this.formGroup);
   }
 }

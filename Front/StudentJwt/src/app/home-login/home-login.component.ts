@@ -19,6 +19,6 @@ export class HomeLoginComponent implements OnInit {
   loginHome(): void {
     const user = new UserLogin(this.username, this.password);
     console.log(user);
-    this.auth.loginHomeLocal();
+    this.auth.login(user);
   }
 }

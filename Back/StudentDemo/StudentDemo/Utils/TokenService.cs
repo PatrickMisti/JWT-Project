@@ -18,8 +18,8 @@ namespace StudentDemo.Utils
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha512);
 
             var tokeOptions = new JwtSecurityToken(
-                issuer: "http://localhost:5000",
-                audience: "http://localhost:5000",
+                issuer: "http://localhost:53127",
+                audience: "http://localhost:53127",
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(5),
                 signingCredentials: signinCredentials

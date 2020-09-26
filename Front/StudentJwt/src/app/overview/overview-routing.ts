@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {OverviewComponent} from './overview.component';
 import {SettingsComponent} from '../components/settings/settings.component';
 import {ClassListComponent} from '../components/class-list/class-list.component';
 import {StudentsListComponent} from '../components/students-list/students-list.component';

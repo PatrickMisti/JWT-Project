@@ -1,6 +1,6 @@
 <div class="tab-style">
   <mat-tab-group mat-stretch-tabs>
-    <mat-tab *ngFor="let item of grads;let index = index" label="{{item[0]}}" id="{{index}}">
+    <mat-tab *ngFor="let item of grads;let index = index" label="{{item[0]}}">
       <form class="mat-tab-style" [formGroup]="formGroup" (ngSubmit)="postData(item[1])">
         <div>
           <mat-form-field>

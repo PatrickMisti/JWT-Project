@@ -63,7 +63,7 @@ namespace StudentDemo
             {
                 UserName = "Admin",
                 Password = "Admin",
-                Role = "Super Admin"
+                Role = "Admin"
             });
             db.db.SaveChanges();
         }

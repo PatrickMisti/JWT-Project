@@ -84,7 +84,7 @@ namespace StudentDemo
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
-            //InitBean.Init();
+            InitBean.Init();
         }
     }
 }
