@@ -13,6 +13,7 @@ export class OverviewComponent implements OnInit {
   uname: string;
   pword: string;
   iconSwitch = false;
+  role: string;
   menuList = [['KlassenListe', 'classList']
     , ['SchülerListe', 'studentsList']
     , ['LehrerListe', 'teachersList']
@@ -21,7 +22,10 @@ export class OverviewComponent implements OnInit {
   constructor(private jwtHelper: JwtHelperService, private arouter: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.uname = this.arouter.snapshot.paramMap.get('ulogin');
+    const jwtData = localStorage.jwt.split('.')[1];
+    const jwtDecoder = window.atob(jwtData);
+    const decodedData = JSON.parse(jwtDecoder);
+    this.role = decodedData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
   }
 
   callComponent(component): void {

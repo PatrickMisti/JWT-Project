@@ -25,6 +25,8 @@ import { StudentsListComponent } from './components/students-list/students-list.
 import { TeachersListComponent } from './components/teachers-list/teachers-list.component';
 import { ClassListComponent } from './components/class-list/class-list.component';
 import {A11yModule} from '@angular/cdk/a11y';
+import { DialogPopupFinishComponent } from './components/settings/dialog-popup-finish/dialog-popup-finish.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 export function tokenGetter(): string {
   return localStorage.getItem('jwt');
@@ -37,33 +39,35 @@ export function tokenGetter(): string {
     SettingsComponent,
     StudentsListComponent,
     TeachersListComponent,
-    ClassListComponent
+    ClassListComponent,
+    DialogPopupFinishComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    OverviewRoutingModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter,
-        allowedDomains: ['localhost:53127'],
-        disallowedRoutes: []
-      }
-    }),
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    MatButtonModule,
-    HttpClientModule,
-    FormsModule,
-    MatSidenavModule,
-    MatDividerModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    A11yModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        OverviewRoutingModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter,
+                allowedDomains: ['localhost:53127'],
+                disallowedRoutes: []
+            }
+        }),
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonToggleModule,
+        MatButtonModule,
+        HttpClientModule,
+        FormsModule,
+        MatSidenavModule,
+        MatDividerModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        A11yModule,
+        MatDialogModule
+    ],
   providers: [AuthGuard, HttpClientService],
   bootstrap: [AppComponent]
 })
