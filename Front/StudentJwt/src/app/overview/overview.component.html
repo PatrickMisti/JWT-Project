@@ -1,0 +1,27 @@
+<mat-drawer-container class="drawer-container">
+  <mat-drawer class="drawer-sidenav" #drawer mode="side">
+    <div>
+      <label class="sidenav-style">Menü</label>
+      <mat-divider></mat-divider>
+      <div *ngFor="let item of menuList" style="padding: 10%">
+        <label class="sidenav-list" *ngIf="item[1] != 'settings' || role == 'Admin'" (click)="callComponent(item[1])">{{item[0]}}</label>
+      </div>
+    </div>
+  </mat-drawer>
+
+  <div class="router-styling">
+    <router-outlet></router-outlet>
+  </div>
+
+
+  <div class="button-mat-styling">
+    <button mat-icon-button class="button-style" (click)="drawer.toggle();iconSwitch = !iconSwitch;">
+      <mat-icon class="button-icon-style" *ngIf="iconSwitch == false">more_vert</mat-icon>
+      <mat-icon class="button-icon-style" *ngIf="iconSwitch == true">close</mat-icon>
+    </button>
+  </div>
+
+
+
+
+</mat-drawer-container>
