@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import {url} from './authentication.service';
 import {FormGroup} from '@angular/forms';
 import {tokenGetter} from '../app.module';
+import {Observable, Observer} from 'rxjs';
+import {ClassRoom} from '../components/class-list/class-list.component';
 
 export const studentUrl = '/students';
 export const teacherUrl = '/teachers';
+export const classRoomUrl = '/classroom';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,13 +17,11 @@ export class HttpClientService {
 
   constructor() { }
 
-  data = [];
+  private data = [];
 
-  async getData(urlPath: string): Promise<void> {
-    await fetch(url + urlPath)
-      .then(response => response.json())
-      .then(res => this.data.push(res))
-      .catch(err => console.log(err));
+  async getData(urlPath: string): Promise<any> {
+    return await fetch(url + urlPath)
+      .then(res => res.json());
   }
 
   async postData(grad: string, form: FormGroup): Promise<void> {

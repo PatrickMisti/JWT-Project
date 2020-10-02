@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {classRoomUrl, HttpClientService} from '../../services/http-client.service';
 
 export interface ClassRoom{
-  classId: number;
+  classroomId: number;
   className: string;
-  students: [];
-  teachers: [];
 }
 
 @Component({
@@ -13,12 +12,16 @@ export interface ClassRoom{
   styleUrls: ['./class-list.component.css']
 })
 export class ClassListComponent implements OnInit {
-
+  classRoomName = ['position', 'classn'];
   classRoom: ClassRoom[] = [];
 
-  constructor() { }
+  constructor(private http: HttpClientService) { }
 
   ngOnInit(): void {
+    this.http.getData(classRoomUrl).then(data => {
+      this.classRoom.push(data);
+      console.log(this.classRoom);
+    });
   }
 
 }

@@ -20,7 +20,7 @@ namespace StudentDemo.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User" +","+ "Admin")]
+        //[Authorize(Roles = "User" +","+ "Admin")]
         public IEnumerable<Classroom> Get()
         {
             return repo.GetAll<Classroom>();
