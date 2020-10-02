@@ -27,6 +27,7 @@ import { ClassListComponent } from './components/class-list/class-list.component
 import {A11yModule} from '@angular/cdk/a11y';
 import { DialogPopupFinishComponent } from './components/settings/dialog-popup-finish/dialog-popup-finish.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 export function tokenGetter(): string {
   return localStorage.getItem('jwt');
@@ -66,7 +67,8 @@ export function tokenGetter(): string {
         MatTabsModule,
         ReactiveFormsModule,
         A11yModule,
-        MatDialogModule
+        MatDialogModule,
+        MatTableModule
     ],
   providers: [AuthGuard, HttpClientService],
   bootstrap: [AppComponent]

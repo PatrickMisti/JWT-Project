@@ -3,28 +3,29 @@ import {url} from './authentication.service';
 import {FormGroup} from '@angular/forms';
 import {tokenGetter} from '../app.module';
 
-
+export const studentUrl = '/students';
+export const teacherUrl = '/teachers';
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
-  readonly studentUrl = '/students';
-  readonly teacherUrl = '/teachers';
+
+
 
   constructor() { }
 
-  user = [];
+  data = [];
 
-  async getData(): Promise<void> {
-    await fetch(url + this.studentUrl)
+  async getData(urlPath: string): Promise<void> {
+    await fetch(url + urlPath)
       .then(response => response.json())
-      .then(res => this.user.push(res))
+      .then(res => this.data.push(res))
       .catch(err => console.log(err));
   }
 
   async postData(grad: string, form: FormGroup): Promise<void> {
     const userJson = this.createUser(form);
-    const baseUrl = grad === 'students' ? this.studentUrl : this.teacherUrl;
+    const baseUrl = grad === 'students' ? studentUrl : teacherUrl;
     await fetch(url + baseUrl, {
       method: 'POST',
       headers: {

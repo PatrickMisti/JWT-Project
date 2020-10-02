@@ -1,1 +1,10 @@
-<p>class-list works!</p>
+<div>
+  <table mat-table [dataSource]="classRoom" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{element.classId}}</td>
+    </ng-container>
+
+  </table>
+</div>
