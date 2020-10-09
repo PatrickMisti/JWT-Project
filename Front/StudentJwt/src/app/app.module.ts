@@ -28,6 +28,7 @@ import {A11yModule} from '@angular/cdk/a11y';
 import { DialogPopupFinishComponent } from './components/settings/dialog-popup-finish/dialog-popup-finish.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 export function tokenGetter(): string {
   return localStorage.getItem('jwt');
@@ -68,7 +69,8 @@ export function tokenGetter(): string {
         ReactiveFormsModule,
         A11yModule,
         MatDialogModule,
-        MatTableModule
+        MatTableModule,
+        MatCheckboxModule
     ],
   providers: [AuthGuard, HttpClientService],
   bootstrap: [AppComponent]

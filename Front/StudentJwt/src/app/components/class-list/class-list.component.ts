@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {classRoomUrl, HttpClientService} from '../../services/http-client.service';
+import {ActivatedRoute} from '@angular/router';
 
 export interface ClassRoom{
   classroomId: number;
@@ -12,16 +13,24 @@ export interface ClassRoom{
   styleUrls: ['./class-list.component.css']
 })
 export class ClassListComponent implements OnInit {
-  classRoomName = ['position', 'classn'];
+  classRoomName = ['position', 'classn', ''];
   classRoom: ClassRoom[] = [];
+  role: string = null;
 
-  constructor(private http: HttpClientService) { }
+  constructor(private http: HttpClientService, private arouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+    console.log('class list');
     this.http.getData(classRoomUrl).then(data => {
       this.classRoom.push(data);
       console.log(this.classRoom);
     });
+    this.arouter.params.subscribe(data => {
+      this.role = data.roles;
+    });
   }
 
+  deleteRow() {
+
+  }
 }

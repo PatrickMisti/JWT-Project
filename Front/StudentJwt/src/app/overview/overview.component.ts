@@ -30,7 +30,7 @@ export class OverviewComponent implements OnInit {
 
   callComponent(component): void {
     this.drawer.toggle();
-    this.router.navigate(['overview/' + component]);
+    this.router.navigate(['overview/' + component, { roles: this.role}]);
 
   }
 
