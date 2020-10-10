@@ -1,24 +1,24 @@
 <div class="login-form">
   <div class="login-form">
     <div class="login-block-style">
-      <h1>Login</h1>
-      <div>
-        <mat-form-field class="mat-action-row">
-          <mat-label>Username</mat-label>
-          <input matInput placeholder="Placeholder" [(ngModel)]="username">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="z.B. Hallo123" type="password" [(ngModel)]="password">
-        </mat-form-field>
-      </div>
-      <div class="button-style">
-        <button mat-flat-button color="primary" [disabled]="!password || !username" (click)="loginHome()">
-          Sign in
-        </button>
-      </div>
+        <h1>Login</h1>
+        <div>
+          <mat-form-field class="mat-action-row">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Placeholder" [(ngModel)]="username">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="z.B. Hallo123" type="password" [(ngModel)]="password">
+          </mat-form-field>
+        </div>
+        <div class="button-style">
+          <button mat-flat-button color="primary" [disabled]="!password || !username" type="submit" (keydown.enter)="loginHome()" (click)="loginHome()">
+            Sign in
+          </button>
+        </div>
     </div>
   </div>
 </div>

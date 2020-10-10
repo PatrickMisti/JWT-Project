@@ -45,6 +45,7 @@ export class OverviewComponent implements OnInit {
 
   public logOut = () => {
     localStorage.removeItem('key');
+    this.router.navigate(['']);
   }
 
 }

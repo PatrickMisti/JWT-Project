@@ -4,7 +4,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
 }
-table {
+mat-table {
   width: 80%;
+}
+.element-center {
+  justify-content: center;
+}
+.div-style-button {
+  padding-top: 5%;
 }

@@ -1,24 +1,30 @@
 <div class="table-container">
-  <table mat-table [dataSource]="classRoom[0]" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="delete">
-      <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let row"><button mat-flat-button (click)="deleteRow()">delete</button></td>
-    </ng-container>
+  <mat-table [dataSource]="datasource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{element.classroomId.toString()}}</td>
+      <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.classroomId.toString()}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="classn">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{element.className}}</td>
+    <ng-container matColumnDef="classn" style="justify-content: center">
+      <mat-header-cell class="element-center" *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell class="element-center" *matCellDef="let element">{{element.className}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row" style="justify-content: flex-end">
+        <button mat-icon-button (click)="deleteRow(row)" *ngIf="role == 'Admin'">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
 
 
-
-    <tr mat-header-row *matHeaderRowDef="classRoomName"></tr>
-    <tr mat-row *matRowDef="let row;columns:classRoomName;"></tr>
-  </table>
+    <mat-header-row *matHeaderRowDef="classRoomName"></mat-header-row>
+    <mat-row *matRowDef="let row;columns:classRoomName;"></mat-row>
+  </mat-table>
+  <div class="div-style-button">
+    <button color="accent" (click)="saveData()" mat-flat-button *ngIf="role == 'Admin'">Speichern</button>
+  </div>
 </div>

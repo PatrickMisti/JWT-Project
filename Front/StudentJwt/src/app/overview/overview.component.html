@@ -6,6 +6,9 @@
       <div *ngFor="let item of menuList" style="padding: 10%">
         <label class="sidenav-list" *ngIf="item[1] != 'settings' || role == 'Admin'" (click)="callComponent(item[1]);iconSwitch = !iconSwitch;">{{item[0]}}</label>
       </div>
+      <div>
+        <label class="sidenav-list logout-style" (click)="logOut()">Logout</label>
+      </div>
     </div>
   </mat-drawer>
 
