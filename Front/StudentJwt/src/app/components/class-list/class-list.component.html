@@ -1,0 +1,30 @@
+<div class="table-container">
+  <mat-table [dataSource]="datasource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef>No.</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.classroomId.toString()}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="classn" style="justify-content: center">
+      <mat-header-cell class="element-center" *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell class="element-center" *matCellDef="let element">{{element.className}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let row" style="justify-content: flex-end">
+        <button mat-icon-button (click)="deleteRow(row)" *ngIf="role == 'Admin'">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="classRoomName"></mat-header-row>
+    <mat-row *matRowDef="let row;columns:classRoomName;"></mat-row>
+  </mat-table>
+  <div class="div-style-button">
+    <button color="accent" (click)="saveData()" mat-flat-button *ngIf="role == 'Admin'">Speichern</button>
+  </div>
+</div>
